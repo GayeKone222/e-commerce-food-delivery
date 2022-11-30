@@ -19,15 +19,29 @@ class ApiRemoteDataSourceImpl implements ApiRemoteDataSource {
   Future<List<ProductEntity>> getPupolarProducts() async {
     final url = Uri.parse(ApiConstant.getPopularProducsUrl);
 
-    final response = await httpClient.get(url, headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Authorization': 'Bearer token'
-    });
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return List<ProductEntity>.from(
-          data['products'].map((e) => ProductModel.fromJson(e)));
-    } else {
+    print("url : $url");
+
+    try {
+      final response = await httpClient.get(
+        url,
+
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          //'Accept': 'application/json',
+          //'Authorization': 'Bearer token'
+        }
+      );
+      print("responses = ${response.body.toString()}");
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return List<ProductEntity>.from(
+            data['products'].map((e) => ProductModel.fromJson(e)));
+      } else {
+        throw Failure(message: "message");
+      }
+    } catch (e) {
+      print("getPupolarProducts error ${e.toString()}");
+
       throw Failure(message: "message");
     }
   }

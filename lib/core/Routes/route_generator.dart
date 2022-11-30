@@ -1,6 +1,10 @@
 import 'package:e_commerce/core/Routes/routes_name.dart';
 import 'package:e_commerce/core/utils/string_extension.dart';
 import 'package:e_commerce/features/domain/entities/product_entity.dart';
+import 'package:e_commerce/features/domain/entities/user_entity.dart';
+import 'package:e_commerce/features/presentation/screens/Address/address_screen.dart';
+import 'package:e_commerce/features/presentation/screens/Auth/sign_in_screen.dart';
+import 'package:e_commerce/features/presentation/screens/Auth/sign_up_screen.dart';
 import 'package:e_commerce/features/presentation/screens/cart/cart_screen.dart';
 import 'package:e_commerce/features/presentation/screens/cart_history/cart_history_screen.dart';
 import 'package:e_commerce/features/presentation/screens/food/popular_food_details_screen.dart';
@@ -8,6 +12,7 @@ import 'package:e_commerce/features/presentation/screens/food/recommended_food_d
 import 'package:e_commerce/features/presentation/screens/home/home_screen.dart';
 import 'package:e_commerce/features/presentation/screens/main/main_screen.dart';
 import 'package:e_commerce/features/presentation/screens/page_not_found.dart/404.dart';
+import 'package:e_commerce/features/presentation/screens/profile/profile_screen.dart';
 import 'package:e_commerce/features/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -19,13 +24,12 @@ class RouteGenerator {
       //exemple with datas in path
 
       case Routes.SplashRoute:
-      return CustomRoute(
-        builder: (context) => const SplashScreen(),
-        settings: routesSettings,
-      );
+        return CustomRoute(
+          builder: (context) => const SplashScreen(),
+          settings: routesSettings,
+        );
 
-
-       case Routes.MainRoute:
+      case Routes.MainRoute:
         return CustomRoute(
           builder: (context) => const MainScreen(),
           settings: routesSettings,
@@ -37,16 +41,40 @@ class RouteGenerator {
           settings: routesSettings,
         );
 
+      case Routes.SignInScreenRoute:
+        return CustomRoute(
+          builder: (context) => const SignInScreen(),
+          settings: routesSettings,
+        );
+
+      case Routes.SignUpScreenRoute:
+        return CustomRoute(
+          builder: (context) => const SignUpScreen(),
+          settings: routesSettings,
+        );
+
       case Routes.CartRoute:
         return CustomRoute(
           builder: (context) => const CartScreen(),
           settings: routesSettings,
         );
 
-      
-       case Routes.CartHistoryRoute:
+      case Routes.ProfileScreenRoute:
+        return CustomRoute(
+          builder: (context) => const ProfileScreen(),
+          settings: routesSettings,
+        );
+
+      case Routes.CartHistoryRoute:
         return CustomRoute(
           builder: (context) => const CartHistoryScreen(),
+          settings: routesSettings,
+        );
+
+      case Routes.AddressScreenRoute:
+          final user = routesSettings.arguments as UserEntity;
+        return CustomRoute(
+          builder: (context) =>   AddressScreen(user: user),
           settings: routesSettings,
         );
 

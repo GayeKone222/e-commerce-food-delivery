@@ -27,4 +27,11 @@ class CartHistoryCubit extends Cubit<List<CartHistoryEntity>> {
       emit(r.reversed.toList());
     });
   }
+
+    void clearCartHistory() {
+    final data = cartHistoryUsecases.clear();
+    data.fold((l) => print("error left clearCartItems "), (r) {
+      emit([]);
+    });
+  }
 }

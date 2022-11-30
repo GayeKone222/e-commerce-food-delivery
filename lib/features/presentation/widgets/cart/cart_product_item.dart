@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/utils/api_constants.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/features/domain/entities/cart_entity.dart';
 import 'package:e_commerce/features/presentation/cubit/add_product_to_cart_cubit/add_product_to_cart_cubit.dart';
@@ -27,7 +28,8 @@ class CartProductItem extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.r),
                 image: DecorationImage(
-                    fit: BoxFit.cover, image: AssetImage(product.img))),
+                    fit: BoxFit.cover, image: NetworkImage(
+                            ApiConstant.uploadsUrl +product.img))),
           ),
           SizedBox(
             width: 10.w,

@@ -26,8 +26,9 @@ class CartItemsList extends StatelessWidget {
                   onTap: () {
                     BlocProvider.of<NavigatorBloc>(context).add(PushNamed(
                         route: productsAddedInCart[index]
-                                .productEntity
-                                .isRecommended!
+                                    .productEntity
+                                    .isRecommended ??
+                                false
                             ? Routes.RecommendedFoodDetails
                             : Routes.PopularFoodDetails,
                         objectParam: productsAddedInCart[index].productEntity));

@@ -1,4 +1,5 @@
 import 'package:e_commerce/core/Routes/routes_name.dart';
+import 'package:e_commerce/core/utils/api_constants.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/features/domain/entities/cart_history_entity.dart';
 import 'package:e_commerce/features/presentation/bloc/navigator_bloc/navigator_bloc.dart';
@@ -91,8 +92,8 @@ class CartHistoryScreen extends StatelessWidget {
                                                           right: 5.w),
                                                       decoration: BoxDecoration(
                                                           image: DecorationImage(
-                                                              image: AssetImage(
-                                                                  state[index]
+                                                              image: NetworkImage(
+                            ApiConstant.uploadsUrl +state[index]
                                                                       .cartEntities[
                                                                           index2]
                                                                       .img))),

@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/utils/api_constants.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/features/domain/entities/product_entity.dart';
 import 'package:e_commerce/features/presentation/bloc/navigator_bloc/navigator_bloc.dart';
@@ -27,7 +28,7 @@ class RecommendedFoodDetails extends StatelessWidget {
               icon: Icons.clear,
               onTap: () => BlocProvider.of<NavigatorBloc>(context).add(Pop()),
             ),
-            AppIcon(icon: Icons.shopping_cart_outlined),
+            const AppIcon(icon: Icons.shopping_cart_outlined),
           ]),
           bottom: PreferredSize(
             preferredSize: Size.fromHeight(20.h),
@@ -52,8 +53,8 @@ class RecommendedFoodDetails extends StatelessWidget {
           backgroundColor: AppColors.yellowColor,
           expandedHeight: 300.h,
           flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-              popularProduct.img,
+            background: Image.network(
+              ApiConstant.uploadsUrl + popularProduct.img,
               width: double.maxFinite,
               fit: BoxFit.cover,
             ),

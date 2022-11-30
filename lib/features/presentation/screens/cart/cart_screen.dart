@@ -2,8 +2,10 @@ import 'package:e_commerce/core/Routes/routes_name.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/features/domain/entities/cart_entity.dart';
 import 'package:e_commerce/features/domain/entities/cart_history_entity.dart';
+import 'package:e_commerce/features/presentation/bloc/address_bloc/address_bloc.dart';
 import 'package:e_commerce/features/presentation/bloc/navigator_bloc/navigator_bloc.dart';
 import 'package:e_commerce/features/presentation/cubit/add_product_to_cart_cubit/add_product_to_cart_cubit.dart';
+import 'package:e_commerce/features/presentation/cubit/auth_status_cubit/auth_status_cubit.dart';
 import 'package:e_commerce/features/presentation/cubit/cart_history_cubit/cart_history_cubit.dart';
 import 'package:e_commerce/features/presentation/widgets/cart/cart_list_items.dart';
 import 'package:e_commerce/features/presentation/widgets/common/app_icon.dart';
@@ -116,6 +118,7 @@ class CartScreen extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
+                                //update cart history
                                 context.read<CartHistoryCubit>().update(
                                     order: CartHistoryEntity(
                                         cartEntities: state.values.toList(),
@@ -131,11 +134,23 @@ class CartScreen extends StatelessWidget {
                                 //     .add(const PushNamed(
                                 //   route: Routes.CartHistoryRoute,
                                 // ));
+                                print(
+                                    "token exists : ${context.read<AuthStatusCubit>().state}");
+                                if (context.read<AuthStatusCubit>().state) {
+                                  //if address list is empty
 
-                                BlocProvider.of<NavigatorBloc>(context)
-                                    .add(const PushNamed(
-                                  route: Routes.MainRoute,
-                                ));
+                                  if(context.read<AddressBloc>().state.addressEntity == null){
+                                    //go to address page
+                                  }else{
+                                        //go to home page
+                                  }
+                                   
+                                } else {
+                                  BlocProvider.of<NavigatorBloc>(context)
+                                      .add(const PushNamed(
+                                    route: Routes.SignInScreenRoute,
+                                  ));
+                                }
                               },
                               child: Container(
                                   padding: EdgeInsets.symmetric(

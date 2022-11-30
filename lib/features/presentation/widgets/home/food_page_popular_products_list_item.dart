@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/utils/api_constants.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/features/domain/entities/product_entity.dart';
 import 'package:e_commerce/features/presentation/widgets/common/big_text.dart';
@@ -24,9 +25,10 @@ class PopularProductsListItem extends StatelessWidget {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.r),
                 color: Colors.white30,
-                image:   DecorationImage(
+                image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage(popularProduct.img))),
+                    image: NetworkImage(
+                        ApiConstant.uploadsUrl + popularProduct.img))),
           ),
           Expanded(
             child: Container(

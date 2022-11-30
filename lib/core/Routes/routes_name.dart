@@ -8,4 +8,8 @@ class Routes {
   static const String RecommendedFoodDetails = '/recommendedFoodDetails';
   static const String CartRoute = '/cart';
   static const String CartHistoryRoute = '/cartHistory';
+  static const String ProfileScreenRoute = '/profileScreen';
+  static const String SignInScreenRoute = '/signInScreen';
+  static const String SignUpScreenRoute = '/signUpScreen';
+  static const String AddressScreenRoute = '/addressScreen';
 }

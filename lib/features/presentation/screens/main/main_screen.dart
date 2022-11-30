@@ -1,19 +1,19 @@
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/features/presentation/cubit/bottom_navigation_bar_cubit/bottom_navigation_bar_cubit.dart';
+import 'package:e_commerce/features/presentation/screens/Auth/sign_up_screen.dart';
 import 'package:e_commerce/features/presentation/screens/cart_history/cart_history_screen.dart';
 import 'package:e_commerce/features/presentation/screens/home/home_screen.dart';
+import 'package:e_commerce/features/presentation/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 List pages = [
   const HomeScreen(),
-  Container(
-    child: Center(child: Text("page1")),
+  const Center(
+    child: Text("data"),
   ),
   const CartHistoryScreen(),
-  Container(
-    child: Center(child: Text("page3")),
-  )
+  const ProfileScreen()
 ];
 
 List pageIcons = [
@@ -41,10 +41,13 @@ class MainScreen extends StatelessWidget {
               selectedFontSize: 0.0,
               unselectedFontSize: 0.0,
               onTap: (index) {
-                context.read<BottomNavigationBarCubit>().changePage(index: index);
+                context
+                    .read<BottomNavigationBarCubit>()
+                    .changePage(index: index);
               },
               items: [
-                ...pageIcons.map((e) => BottomNavigationBarItem(icon: Icon(e), label: "page${pageIcons.indexOf(e)}"))
+                ...pageIcons.map((e) => BottomNavigationBarItem(
+                    icon: Icon(e), label: "page${pageIcons.indexOf(e)}"))
               ]),
         );
       },

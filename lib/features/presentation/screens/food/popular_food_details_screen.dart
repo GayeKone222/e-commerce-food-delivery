@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:e_commerce/core/Routes/routes_name.dart';
 import 'package:e_commerce/core/dependency_injection.dart/injections.dart';
+import 'package:e_commerce/core/utils/api_constants.dart';
 import 'package:e_commerce/core/utils/colors.dart';
 import 'package:e_commerce/core/utils/dimensions.dart';
 import 'package:e_commerce/features/domain/entities/product_entity.dart';
@@ -41,7 +44,8 @@ class PopularFoodDetails extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage(popularProduct.img),
+                        image: NetworkImage(
+                            ApiConstant.uploadsUrl + popularProduct.img),
                       ),
                     ),
                   )),
@@ -57,10 +61,10 @@ class PopularFoodDetails extends StatelessWidget {
                               .add(Pop()),
                           icon: Icons.arrow_back_ios,
                         ),
-                         CartItemsBadge(
+                        CartItemsBadge(
                           child: AppIcon(
                             onTap: () => BlocProvider.of<NavigatorBloc>(context)
-                              .add(const PushNamed(route: Routes.CartRoute)),
+                                .add(const PushNamed(route: Routes.CartRoute)),
                             icon: Icons.shopping_cart_outlined,
                           ),
                         )
@@ -84,7 +88,9 @@ class PopularFoodDetails extends StatelessWidget {
                         children: [
                           SizedBox(
                               height: Dimensions.pageViewTextContainer,
-                              child: const AppColumn()),
+                              child: AppColumn(
+                                product: popularProduct,
+                              )),
                           SizedBox(
                             height: 20.h,
                           ),
@@ -92,12 +98,10 @@ class PopularFoodDetails extends StatelessWidget {
                           SizedBox(
                             height: 20.h,
                           ),
-                          const Expanded(
+                          Expanded(
                               child: SingleChildScrollView(
                                   child: ExpandableTextWidget(
-                            text:
-                                "slsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp slsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjoslsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjoslsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjoslsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjoslsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjoslsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjoslsd s;psdpjps sjsdppd jpoodpod sdkpkpdsd sdk,pdsd ;sd,pksdpdspkpsdpskŝdksksd sdl,psdksdpksdpds sd,pkdspdp sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjo sd,pkdspksdsdk dkpkdpdpsd sdk^sksd sdkskdp dfjffdjfoff fjofjdjpofosfjsf fdjpjfdojfdjo",
-                          )))
+                                      text: popularProduct.description)))
                         ],
                       )))
             ]),

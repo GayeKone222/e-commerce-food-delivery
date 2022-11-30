@@ -1,3 +1,4 @@
+import 'package:e_commerce/core/utils/api_constants.dart';
 import 'package:e_commerce/core/utils/dimensions.dart';
 import 'package:e_commerce/features/domain/entities/product_entity.dart';
 import 'package:e_commerce/features/presentation/widgets/common/app_column.dart';
@@ -11,13 +12,14 @@ class MainPageViewItem extends StatelessWidget {
       required this.index,
       required this.currentPageValue,
       this.scaleFactor = 0.8,
-      this.height = 220, required this.popularProduct})
+      this.height = 220,
+      required this.popularProduct})
       : super(key: key);
   final int index;
   final double currentPageValue;
   final double scaleFactor;
   final double height;
-    final ProductEntity popularProduct;
+  final ProductEntity popularProduct;
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +56,9 @@ class MainPageViewItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30.r),
               color: const Color(0xFF69c5df),
-              image:   DecorationImage(
-                  image: AssetImage(popularProduct.img),
+              image: DecorationImage(
+                  image:
+                      NetworkImage(ApiConstant.uploadsUrl + popularProduct.img),
                   fit: BoxFit.cover),
             ),
           ),
@@ -85,7 +88,9 @@ class MainPageViewItem extends StatelessWidget {
                     ],
                     color: Colors.white,
                   ),
-                  child: const AppColumn())),
+                  child: AppColumn(
+                    product: popularProduct,
+                  ))),
         ],
       ),
     );
